@@ -14,11 +14,11 @@ def rgb2gray(rgb):
     return np.dot(rgb[...,:3], [0.299, 0.587, 0.114])
 
 def resize():
-    directory = 'cars_train'
+    directory = 'images'
     for filename in os.listdir(directory):
         path  = directory + "/" + filename
-        img = Image.open(path).convert('L')
-        img = resizeimage.resize_cover(img, [28, 28], validate=False)
+        img = Image.open(path)
+        img = resizeimage.resize_cover(img, [96, 96, 3], validate=False)
 #        img = rgb2gray(np.array(img))
         img.save('resize/'+filename, img.format)
     
@@ -55,6 +55,8 @@ def load():
 #    print st.shape
     return st
     
-#resize()
+resize()
 #load()
+
+
 
