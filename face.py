@@ -138,8 +138,8 @@ def train(BATCH_SIZE):
             print("Epoch:",epoch)
             print("batch %d g_loss : %f" % (index, g_loss))
             if index % 10 == 9:
-                generator.save_weights('generator_laptop', True)
-                discriminator.save_weights('discriminator_laptop', True)
+                generator.save_weights('generator_faces', True)
+                discriminator.save_weights('discriminator_faces', True)
 
 
 def generate(BATCH_SIZE, nice=False):
