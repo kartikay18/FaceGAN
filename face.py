@@ -22,15 +22,15 @@ from keras.layers.convolutional import Convolution2D, MaxPooling2D
 from keras.layers.core import Flatten
 from keras.optimizers import SGD
 from keras.datasets import mnist
-import resize_laptop
+#import resize_laptop
 import numpy as np
 from PIL import Image
 import argparse
 import math
 import theano
-import resize_face
+#import resize_face
 
-#theano.config.blas.ldflags = '-LC:\\openblas -lopenblas'
+theano.config.blas.ldflags = '-LC:\\openblas -lopenblas'
 
 def generator_model():
     model = Sequential()
@@ -145,11 +145,11 @@ def train(BATCH_SIZE):
 def generate(BATCH_SIZE, nice=False):
     generator = generator_model()
     generator.compile(loss='binary_crossentropy', optimizer="SGD")
-    generator.load_weights('generator')
+    generator.load_weights('generator_faces')
     if nice:
         discriminator = discriminator_model()
         discriminator.compile(loss='binary_crossentropy', optimizer="SGD")
-        discriminator.load_weights('discriminator')
+        discriminator.load_weights('discriminator_faces')
         noise = np.zeros((BATCH_SIZE*20, 100))
         for i in range(BATCH_SIZE*20):
             noise[i, :] = np.random.uniform(-1, 1, 100)
@@ -179,7 +179,7 @@ def generate(BATCH_SIZE, nice=False):
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", type=str, default = "train")
-    parser.add_argument("--batch_size", type=int, default=20)
+    parser.add_argument("--batch_size", type=int, default=1)
     #parser.add_argument("--batch_size", type=int, default=1)
     parser.add_argument("--nice", dest="nice", action="store_true")
     parser.set_defaults(nice=False)
@@ -188,8 +188,8 @@ def get_args():
 
 if __name__ == "__main__":
     args = get_args()
-    train(BATCH_SIZE=args.batch_size)
-    #generate(BATCH_SIZE=args.batch_size, nice=args.nice)
+#    train(BATCH_SIZE=args.batch_size)
+    generate(BATCH_SIZE=args.batch_size, nice=args.nice)
 #    if args.mode == "train":
 #        train(BATCH_SIZE=args.batch_size)
 #    elif args.mode == "generate":
