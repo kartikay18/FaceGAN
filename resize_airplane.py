@@ -13,18 +13,18 @@ import numpy as np
 def rgb2gray(rgb):
     return np.dot(rgb[...,:3], [0.299, 0.587, 0.114])
 
-def resize():
-    directory = 'cars_train'
+def resize(): 
+    directory = 'airplanes'
     for filename in os.listdir(directory):
         path  = directory + "/" + filename
         img = Image.open(path).convert('L')
         img = resizeimage.resize_cover(img, [28, 28], validate=False)
 #        img = rgb2gray(np.array(img))
-        img.save('resize/'+filename, img.format)
+        img.save('resize_airplanes/'+filename, img.format)
     
 def load():
-    directory = 'resize'
-    img = Image.open('resize/00001.jpg')
+    directory = 'resize_airplanes'
+    img = Image.open('resize_airplanes/image_0001.jpg')
     img.load()
     st = np.array(img,dtype="int32")
     
@@ -32,7 +32,7 @@ def load():
 #    st = st[np.newaxis,:,:]
     print st.shape
     for filename in os.listdir(directory):
-        if(filename == "00001.jpg"):
+        if(filename == "image_0001.jpg"):
             continue
         path  = directory + "/" + filename
         img = Image.open(path)
