@@ -7,11 +7,11 @@ We feed in Images of More than 100,000 Faces from the CelebFaces Attributes Data
 
 We feed in Semi Complete Images of Suspects .Our GAN Structure completes it to Provide a Comprehensive Image of the Perpetuator.
 
-# Contributors
+**Team**
 
 @abhinit-modi
 @kartikay18
 @vivek94
 @PraneetDutta
 
-    Submitted to PennApps XV
+> PennApps Top 30 finalist
